@@ -1,0 +1,74 @@
+@font-face {
+    font-family: 'Product Sans';
+    src: url("fonts/prod-sans-reg.ttf"); 
+}
+
+body {
+    font-family: 'Product Sans', sans-serif;
+    background-color: #efefef;
+}
+
+h2 {
+    font-size: 60px;
+    text-align: center;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+input {
+    border: 0;
+    height: 65px;
+    padding: 0 53px;
+    font: inherit;
+    transition: top 0.1s ease-in-out;
+    background-color: #efefef;
+    width: -webkit-fill-available;
+}
+
+.prediction {
+    text-align: left;
+    padding: 0 53px;
+    white-space: nowrap;
+    user-select: none;
+}
+
+br {
+    user-select: none;
+}
+
+.demo {
+    max-width: 800px;
+    margin: auto;
+    font: 40px 'Product Sans';
+}
+
+.hash-symb{
+    position: fixed;
+    padding: 8px 0px 10px 20px;
+    color: rgb(206, 206, 206);
+}
+
+:focus {
+    outline: 0;
+}
+
+input :hover {
+    background-color: #d8d8d8;
+}
+
+input,
+textarea {
+    caret-color: transparent;
+}
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+    color: rgb(206, 206, 206);
+    text-shadow: none;
+    -webkit-text-fill-color: initial;
+}
+
+::selection {
+    background-color: black;
+    color: #fff;
+}

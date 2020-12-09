@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+
+<head>
+    <link rel='stylesheet' href="{{ url_for('static',filename='styles/style.css') }}"></link>
+</head>
+
+
+<body>
+    <title>#HashtagMaster Demo</title>
+
+    <h2>HashtagMaster Segmenting Tool</h2>
+    <div class='demo'> 
+        <span class='hash-symb'>#</span>
+        <input id='hashtag' name='hashtag' type='text' class='validate' spellcheck="false" autofocus placeholder='hashtag...' maxlength="30">
+        <div id='pred_container'></div>
+    </div>
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="{{ url_for('static',filename='scripts/script.js') }}"></script>
+<script src="{{ url_for('static',filename='scripts/api_call.js') }}"></script>

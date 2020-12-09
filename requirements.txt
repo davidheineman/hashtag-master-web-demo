@@ -1,0 +1,10 @@
+Flask==1.1.2
+kenlm @ https://github.com/kpu/kenlm/archive/master.zip
+nltk==3.5
+numpy==1.19.4
+pyenchant==3.1.1
+requests==2.25.0
+editdistance==0.5.3
+-f https://download.pytorch.org/whl/torch_stable.html
+torch==1.7.0+cpu
+torchvision==0.8.1+cpu

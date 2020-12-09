@@ -1,7 +1,9 @@
-word_breaker/*pyc
-word_breaker/__pycache__
-neural_ranker/*pyc
-neural_ranker/*/*pyc
-neural_ranker/__pycache__
-neural_ranker/*/__pycache__
-data_versions
+__pycache__/
+.ipynb_checkpoints/
+models/__pycache__/
+models/.ipynb_checkpoints/
+utils/.ipynb_checkpoints/
+utils/__pycache__/
+requirementsOLD.txt
+static/data/small_gt.bin
+static/data/small_kn.bin
