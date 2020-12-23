@@ -2,7 +2,7 @@ Flask==1.1.2
 kenlm @ https://github.com/kpu/kenlm/archive/master.zip
 nltk==3.5
 numpy==1.19.4
-libenchant
+pyenchant==3.1.1
 requests==2.25.0
 editdistance==0.5.3
 gunicorn==20.0.4
