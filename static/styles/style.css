@@ -141,7 +141,7 @@ textarea::-webkit-input-placeholder {
     border-color: #182529;
 }
 
-.prediction-container {
+#pred_container {
     overflow: hidden;
 }
 
