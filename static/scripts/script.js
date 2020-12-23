@@ -24,7 +24,6 @@ function blink() {
   });
 }
 
-
 function getBackgroundStyle($el, text) {
   var fontSize = $el.css("font-size");
   var fontFamily = $el.css("font-family");

@@ -1,21 +1,76 @@
 <!DOCTYPE html>
 
 <head>
-    <link rel='stylesheet' href="{{ url_for('static',filename='styles/style.css') }}"></link>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel='stylesheet' href="{{ url_for('static',filename='styles/style.css') }}">
+    <link rel="icon" type="image/ico" href="{{ url_for('static',filename='img/favicon.ico') }}"/>
+    <title>Hashtag Master Demo</title>
 </head>
 
-
 <body>
-    <title>#HashtagMaster Demo</title>
-
-    <h2>HashtagMaster Segmenting Tool</h2>
-    <div class='demo'> 
+    <div class='navbar-wrapper'>
+        <nav class="navbar navbar-light">
+            <div class='logo-container'>
+                <img class='logo' src="{{ url_for('static',filename='img/logo-nobg.png') }}" alt="logo"></img>
+                <div class ='header'>
+                    <h2 class='title'>#Hashtag Master</h2>
+                    <h3>Sentiment analysis for hashtags</h3>
+                </div>
+            </div>
+            <div>
+                <button onclick="window.location.href='https://www.aclweb.org/anthology/P19-1242/'" type="button" class="btn btn-outline-success">Paper</button>
+                <button onclick="window.location.href='https://github.com/mounicam/hashtag_master'" type="button" class="btn btn-outline-success">View on <svg viewBox="0 0 16 16" width="14" height="14" class="octicon octicon-mark-github" aria-hidden="true"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg></button>
+            </div>
+        </nav>
+    </div>
+    
+    <div class="container demo">
+        <br />
+        <span class='model-intro'>Our model can split a Twitter hashtag into a sequence of meaningful words</span>
+        <br />
         <span class='hash-symb'>#</span>
         <input id='hashtag' name='hashtag' type='text' class='validate' spellcheck="false" autofocus placeholder='hashtag...' maxlength="30">
         <div id='pred_container'></div>
     </div>
+
+    <div class='more'>
+        <button id='more' class="mdl-js-ripple-effect mdl-button mdl-js-button mdl-button--fab" data-upgraded=",MaterialButton">
+            <i class="material-icons">keyboard_arrow_down</i>
+        </button>
+    </div>
+
+    <div class='seg-about' id='about'>
+        <div class="container">
+            <h2>What is segmentation?</h2>
+            <div class="col-10 seg-desc">
+                <span>Numerous systems use twitter data to make predictions and they typically ignore hashtags. Hashtag Master converts the hash tags to meaningful words</span>
+            </div>
+
+            <span>#fixreplies</span>
+            <span>#creditcrunchtv</span>
+            <span>#startrek</span>
+            <span>fix replies</span>
+            <span>Credit Crunch TV</span>
+            <span>Star Trek</span>
+        
+            <span>#brunchrules</span>
+            <span>#whyitweet</span>
+            <span>brunch rules</span>
+            <span>why I tweet</span>
+        </div>
+    </div>
+
+    <div class='seg-footer'>
+        <div class='container'>
+            <span>Paper by Mounica Maddela, Wei Xu, Daniel Preoţiuc-Pietro. Web demo by David Heineman</span>
+        </div>
+    </div>
 </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
 <script src="{{ url_for('static',filename='scripts/script.js') }}"></script>
 <script src="{{ url_for('static',filename='scripts/api_call.js') }}"></script>

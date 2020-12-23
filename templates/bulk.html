@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Bulk Segmentation</title>
+</head>
+
+<body>
+    <h2>Bulk Hashtag Master Segmentation</h2>
+    <span>Input hashtags seperated by commas (ex. atlantamidtown, helloworld)</span>
+    <br />
+    <textarea placeholder='hashtags here...' id='input_area'></textarea>
+    <button id='input_area_submit'>Submit</button>
+    <br />
+    <span>... or input a .CSV or .TSV file</span>
+    <br />
+    <input type='file' id='file_area' accept=".csv,.tsv">
+    <button id='file_submit'>Submit</button>
+    <br />
+    <span id='pred_container'></span>
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="{{ url_for('static',filename='scripts/api_call_bulk.js') }}"></script>
+
+<!--
+Dropzone.js implementation
+
+<html>
+  <head>
+    <title>File Upload</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.1/min/dropzone.min.css">
+  </head>
+  <body>
+    <h1>File Upload</h1>
+    <form action="{{ url_for('bulk_predict') }}" class="dropzone">
+    </form>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.1/min/dropzone.min.js"></script>
+  </body>
+</html>
+-->

@@ -1,5 +1,13 @@
+const ALLOWED_CHARS = /[^0-9a-zA-Z,]+/;
+
 $(function () {
-    $('input#hashtag').on('input', function () {
+    $('input#hashtag').on('keypress', event => {
+        if (ALLOWED_CHARS.test(event.key)) {
+            event.preventDefault();
+        }
+    });
+
+    $('input#hashtag').on('input', function () {        
         if ($('input[name="hashtag"]').val().length < 2) {
             document.getElementById('pred_container').innerHTML = "";
             if ($('input[name="hashtag"]').val().length == 1) {

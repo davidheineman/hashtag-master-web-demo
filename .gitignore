@@ -1,5 +1,6 @@
 __pycache__/
 .ipynb_checkpoints/
+.idea/
 models/__pycache__/
 models/.ipynb_checkpoints/
 utils/.ipynb_checkpoints/
@@ -7,3 +8,4 @@ utils/__pycache__/
 requirementsOLD.txt
 static/data/small_gt.bin
 static/data/small_kn.bin
+.vscode/
