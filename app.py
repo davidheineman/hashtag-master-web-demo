@@ -1,12 +1,9 @@
 from flask import Flask, jsonify, render_template, request, send_file
 from execute import Segmenter
 from config import get_server_config, get_max_content_length
-import re
-
-# Not sure if I need these
-import os
-from io import BytesIO, StringIO
-import csv
+from io import StringIO
+import flask_excel as excel
+import re, os, csv
 
 app = Flask(__name__)
 app.config['MAX_CONTENT_LENGTH'] = get_max_content_length()
@@ -25,33 +22,24 @@ def index():
         return jsonify(my_segmenter.evaluate(input_data))
     return render_template('main.html')
 
-@app.route('/bulk')
-def bulk_index():
-    return render_template('bulk.html')
-
 @app.route('/bulk', methods=['POST'])
 def bulk_predict():
-    # With bulk predictions, would it be more efficient to evaluate them in batches?
-    # From what I understand, only alphabet characters and numbers are allowed in a hashtag
     up_file = request.files.get('file')
     if up_file:
         file_ext = os.path.splitext(up_file.filename)[1]
-        if file_ext.lower not in app.config['UPLOAD_EXTENSIONS']:
+        if file_ext not in app.config['UPLOAD_EXTENSIONS']:
             return 'The file format is not accepted', 400
-        elif file_ext.lower == '.csv':
-            stream = StringIO(up_file.stream.read().decode("UTF8"), newline=None)
+        stream = StringIO(up_file.stream.read().decode("UTF8"), newline=None)
+        if file_ext == '.csv':
             csv_input = csv.reader(stream)
-            output = []
-            for row in csv_input:
-                for val in row:
-                    output.append(my_segmenter.evaluate(val))
-            return jsonify(output)
-        
-        # return send_file(BytesIO(up_file.read()), attachment_filename='output.csv')
-    # Should determine if textarea input is used
-    elif True:
+        elif file_ext == '.tsv':
+            csv_input = csv.reader(stream, delimiter="\t")
+        output = []
+        for row in csv_input:
+            for val in row:
+                output.append(my_segmenter.evaluate(re.sub('[^0-9a-zA-Z,]', '', val)))
+    else:
         input_data = re.sub('[^0-9a-zA-Z,]', '', request.get_data(as_text=True))
-        print(input_data)
         output = []
         for val in input_data.split(","):
             if len(val) > 1:
@@ -59,6 +47,5 @@ def bulk_predict():
             else:
                 # Doesn't handle the case of a long hashtag
                 output.append([val])
-        return jsonify(output)
-    else:
-        return "Invalid input text", 400
+    excel.init_excel(app)
+    return excel.make_response_from_array(output, file_type='csv', file_name='output')

@@ -35,4 +35,42 @@ $(function () {
         }
         return false;
     });
+
+    $('button#input_area_submit').on('click', function () {
+        if (document.getElementById("file_area").files.length == 0) {
+            $.ajax({
+                type: 'POST',
+                url: '/bulk',
+                data: $('textarea#input_area').val(),
+                contentType: 'text/csv',
+                cache: false,
+                processData: false,
+                success: function(response) {
+                    const blob = new Blob([response], {type: 'text/csv', encoding: 'UTF-8'});
+                    const link = document.createElement('a');
+                    link.href = window.URL.createObjectURL(blob);
+                    link.download = 'output.csv';
+                    link.click();
+                }
+            });
+        } else {
+            var form_data = new FormData();
+            form_data.append('file', $('input#file_area').prop('files')[0])
+            $.ajax({
+                type: 'POST',
+                url: '/bulk',
+                data: form_data,
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function(response) {
+                    const blob = new Blob([response], {type: 'text/csv', encoding: 'UTF-8'});
+                    const link = document.createElement('a');
+                    link.href = window.URL.createObjectURL(blob);
+                    link.download = 'output.csv';
+                    link.click();
+                }
+            });
+        }
+    });
 });
